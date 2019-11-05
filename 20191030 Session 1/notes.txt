@@ -1,0 +1,24 @@
+Series temporales:
+- Lo más eficiente es pasar los datos a datetime de python.
+- También es frecuente y útil que el indice sea ese datetime, como es lógico
+
+Panda functions:
+pd.to_datetime = Transforma de una unidad a objeto datetime.
+Ej: (transforma indice de milisegundos a datetime)
+
+df.index = pd.to_datetime(df.index,unit='ms')
+
+.resample() = Aplicado siempre a un dataframe que tenga un datetime como indice, 
+agrupa las filas por el campo. Devuelve un "vector".
+
+Ej: agrupar por días y devolver OHLD (open, high, low, close,o lo que es lo mimsmo: max,min, fisrt y last)
+df.resample('D').ohlc()
+
+Ej: agrupar por horas y coger el último:
+df.resample('H').last()
+
+.rolling() = Para crear ventanas en las filas.
+Ej: Creame una ventana de 21 registros, y hallame la desviacion standar:
+df.rolling(21).std()
+
+column.dropna() = Quita los registro en los que la columna sea NaN
